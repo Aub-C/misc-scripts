@@ -1,0 +1,17 @@
+#!/bin/bash
+
+
+branch=`git branch | grep "*" | cut -d " " -f 2`;
+
+if [[ ${branch} != "master" ]]
+then
+  git fetch origin
+  git reset --hard origin/master
+  git checkout master
+  git branch -D ${branch}
+  git fetch origin
+  git reset --hard origin/master
+else
+  git fetch origin
+  git reset --hard origin/master
+fi
